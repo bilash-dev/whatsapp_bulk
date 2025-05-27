@@ -1,0 +1,123 @@
+body {
+    overflow-x: hidden;
+    padding-top: 56px; /* Space for fixed header */
+  }
+  
+  /* Header styling */
+  .main-header {
+    height: 56px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    width: 260px;
+    height: calc(100vh - 56px);
+    position: fixed;
+    top: 56px;
+    left: 0;
+    transition: all 0.3s;
+    z-index: 1020;
+    overflow-y: auto;
+  }
+  
+  .sidebar.collapsed {
+    width: 80px;
+  }
+  
+  /* Show text always, even when collapsed */
+  .sidebar.collapsed .nav-link-text,
+  .sidebar.collapsed h6 {
+    display: inline !important;
+    font-size: 0.8rem;
+    margin-left: 5px;
+  }
+  
+  .sidebar.collapsed .nav-link {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .sidebar.collapsed h4 {
+    font-size: 1rem;
+    text-align: center;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin: 10px auto;
+  }
+  
+  /* Main content */
+  .main-content {
+    margin-left: 260px;
+    transition: all 0.3s;
+    min-height: calc(100vh - 56px);
+    padding-top: 20px;
+  }
+  
+  .main-content.expanded {
+    margin-left: 80px;
+  }
+  
+  /* Mobile sidebar */
+  @media (max-width: 992px) {
+    .sidebar {
+      transform: translateX(-100%);
+    }
+    
+    .sidebar.show {
+      transform: translateX(0);
+    }
+    
+    .main-content {
+      margin-left: 0;
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1010;
+      display: none;
+    }
+    
+    .overlay.show {
+      display: block;
+    }
+  }
+  
+  /* Sidebar header */
+  .sidebar-header {
+    padding: 15px;
+    /* background-color: rgba(0,0,0,0.1); */
+    margin-bottom: 10px; 
+  }
+  
+  /* Navigation items */
+  .nav-link {
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 2px;
+  }
+  
+  .nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+  
+  .nav-link.active {
+    background-color: rgba(255,255,255,0.2);
+  }
+  
+  /* Section headings */
+  .sidebar h6 {
+    padding: 10px 15px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
