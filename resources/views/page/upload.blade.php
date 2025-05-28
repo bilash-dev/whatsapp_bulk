@@ -4,12 +4,12 @@
         <h1 class="text-center mb-4">Upload CSV of Phone Numbers</h1>
 
         <!-- CSV Upload Form -->
-        <form method="POST" enctype="multipart/form-data">
+        <form action="{{ route('upload.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             <div class="mb-3">
-                <label for="csv_file" class="form-label">Choose CSV File</label>
-                <input type="file" class="form-control" name="csv_file" accept=".csv" required>
+                <label for="csvFile_name" class="form-label">Choose CSV File</label>
+                <input type="file" class="form-control" name="csvFile_name" accept=".csv" required>
             </div>
             
             <button type="submit" class="btn btn-primary w-100">Upload</button>
@@ -19,26 +19,19 @@
             
         </div>
 
-        <!-- Error Message -->
+        <!-- Success Message -->
+        @if(session('success'))
+            <div class="alert alert-success mt-3">
+                {{ session('success') }}
+            </div>
+        @endif
+
         @if(session('error'))
             <div class="alert alert-danger mt-3">
                 {{ session('error') }}
             </div>
         @endif
-        
-        <!-- Success Message -->
-        @if(request()->query('successs'))
-            <div class="alert alert-success mt-3">
-                File uploaded successfully!
-            </div>
-        @endif
 
-        <!-- Success Message -->
-        {{-- @if (session('success'))
-            <div class="alert alert-success mt-3">
-                {{ session('success') }}
-            </div>
-        @endif --}}
     </div>
     <style>
         .container {

@@ -90,14 +90,14 @@
 
           <h6 class="text-white mt-3 px-2">Management</h6>
           <li class="nav-item">
-            <a href="{{ route('whatsapp.session') }}" class="nav-link text-white">
-              <i class="fab fa-whatsapp me-2"></i>
-              <span class="nav-link-text">WhatsApp Accounts</span>
-            </a>
-            {{-- <a href="{{ route('whatsapp.add') }}" class="nav-link text-white">
+            {{-- <a href="{{ route('whatsapp.session') }}" class="nav-link text-white">
               <i class="fab fa-whatsapp me-2"></i>
               <span class="nav-link-text">WhatsApp Accounts</span>
             </a> --}}
+            <a href="{{ route('senderId.create') }}" class="nav-link text-white">
+              <i class="fab fa-whatsapp me-2"></i>
+              <span class="nav-link-text">WhatsApp Accounts</span>
+            </a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link text-white">

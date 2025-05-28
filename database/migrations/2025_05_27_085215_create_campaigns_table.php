@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignId('sender_id')->constrained('sender_ids');
             $table->foreignId('template_id')->constrained('message_templates');
             $table->string('csv_path');
-            $table->integer('total_recipients')->nullable();
-            $table->integer('sent_count')->default(0);
-            $table->string('status')->default('draft');
+            // $table->integer('total_recipients')->nullable();
+            // $table->integer('sent_count')->default(0);
+            // $table->string('status')->default('draft');
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

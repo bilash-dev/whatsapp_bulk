@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class CsvUpload extends Model
 {
     use HasFactory;
+
+    protected $table = 'csv_uploads';
+    protected $primaryKey = 'id';
+    protected $guarded = [];
 }

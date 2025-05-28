@@ -16,10 +16,7 @@ class WhatsappController extends Controller
         return view('page.template');
     }
 
-    public function uploadCSV(){
-        return view('page.upload');
-    }
-    
+   
     public function campaign(){
         return view('page.campaign');
     }

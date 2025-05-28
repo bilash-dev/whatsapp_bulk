@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <h5 class="card-title mb-4">Add Sender ID (Phone Number)</h5>
 
-                        <form action="{{ route('whatsapp.add') }}" method="POST">
+                        <form action="{{ route('senderId.store') }}" method="POST">
                             @csrf
 
                             <div class="mb-3">

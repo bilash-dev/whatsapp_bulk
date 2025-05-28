@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CsvController;
+use App\Http\Controllers\SenderIdController;
 use App\Http\Controllers\WhatsappController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,13 +32,21 @@ Route::middleware('auth')->group(function(){
     //     return view('layout.sidebar');
     // })->name('dashboard');
 
+    //whatsapp web open route
     Route::get('/whatsapp-session', [AuthController::class, 'whatsappAccounsts'])->name('whatsapp.session');
     Route::post('/open-whatsapp', [AuthController::class, 'openWhatsApp']);
+    
     Route::get('/dashboard', [WhatsappController::class, 'index'])->name('dashboard');
 
     // Route::get('/create-whatsapp-session', [WhatsappController::class, 'createSession'])->name('whatsapp.add');
+    Route::get('/create-whatsapp-session', [SenderIdController::class, 'createSession'])->name('senderId.create');
+    Route::post('/senders/store', [SenderIdController::class, 'store'])->name('senderId.store');
+    
+    Route::get('/upload', [CsvController::class, 'uploadIndex'])->name('upload.csv');
+    Route::post('/upload/store', [CsvController::class, 'uploadCsv'])-> name('upload.store');
+
     Route::get('/template', [WhatsappController::class, 'createTemplate'])->name('create.template');
-    Route::get('/upload', [WhatsappController::class, 'uploadCSV'])->name('upload.csv');
+    
     Route::get('/campaign-view', [WhatsappController::class, 'campaign'])->name('campaign.view');
 
     Route::get('/user-list', [WhatsappController::class, 'userList'])->name('user.list');

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class SenderId extends Model
 {
     use HasFactory;
+
+    protected $table = 'sender_ids';
+    protected $primaryKey = 'id';
+    protected $guarded = [];
 }
