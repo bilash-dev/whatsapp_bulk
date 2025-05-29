@@ -13,9 +13,9 @@
                         <label for="template" class="form-label">Select Template:</label>
                         <select name="template" id="template" class="form-select" required>
                             <option value="">-- Select Template --</option>
-                            {{-- @foreach($templates as $template)
+                            @foreach($templates as $template)
                                 <option value="{{ $template->id }}">{{ $template->name }}</option>
-                            @endforeach --}}
+                            @endforeach
                         </select>
                     </div>
                     
@@ -23,19 +23,19 @@
                         <label for="csv_file" class="form-label">Select CSV File:</label>
                         <select name="csv_file" id="csv_file" class="form-select" required>
                             <option value="">-- Select CSV File --</option>
-                            {{-- @foreach($csvFiles as $file)
-                                <option value="{{ $file->id }}">{{ $file->original_name }}</option>
-                            @endforeach --}}
+                            @foreach($csvFiles as $file)
+                                <option value="{{ $file->id }}">{{ $file->csvFile_name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     
                     <div class="mb-3">
-                        <label for="user" class="form-label">Select User:</label>
+                        <label for="user" class="form-label">Select User</label>
                         <select name="user" id="user" class="form-select" required>
                             <option value="">-- Select User --</option>
-                            {{-- @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                            @endforeach --}}
+                            @foreach($senderID as $user)
+                                <option value="{{ $user->id }}">{{ $user->senderId }}</option>
+                            @endforeach
                         </select>
                     </div>
                     

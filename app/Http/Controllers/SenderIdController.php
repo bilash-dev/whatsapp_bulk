@@ -18,11 +18,11 @@ class SenderIdController extends Controller
     public function store(Request $request){
         
         $validated = $request->validate([
-            'phone_number' => 'required|unique:sender_ids,phone_number',
+            'senderId' => 'required|unique:sender_ids,senderId',
         ]);
 
         SenderId::create([
-            'phone_number' => $request->phone_number,
+            'senderId' => $request->senderId,
             'user_id' => auth()->id(),
         ]);
 

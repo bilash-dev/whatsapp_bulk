@@ -4,21 +4,23 @@
     <div class="template-form">
         <h2 class="form-title">CREATE A TEMPLATE</h2>
         
-        <form>
+        <form action="{{ route('template.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('POST')
             <div class="mb-3">
                 <label for="name" class="form-label">Name:</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter template name">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter template name">
             </div>
             
             <div class="mb-3">
                 <label for="message" class="form-label">Message:</label>
-                <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
+                <textarea class="form-control" id="message" name="content" rows="4" placeholder="Enter your message"></textarea>
             </div>
             
             <div class="mb-4">
-                <label for="image" class="form-label">Image:</label>
+                <label for="image" class="form-label">Image</label>
                 <div class="input-group">
-                    <input type="file" class="form-control" id="image">
+                    <input type="file" class="form-control" id="image" name="image">
                 </div>
                 <div class="form-text">Choose File No file chosen</div>
             </div>
@@ -26,6 +28,21 @@
             <button type="submit" class="btn btn-primary btn-save">Save Template</button>
         </form>
     </div>
+
+
+    <!-- Success Message -->
+    @if(session('success'))
+    <div class="alert alert-success mt-3">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger mt-3">
+            {{ session('error') }}
+        </div>
+    @endif
+    
 </div>
 
 <style>

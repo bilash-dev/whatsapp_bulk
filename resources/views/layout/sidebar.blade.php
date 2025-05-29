@@ -120,7 +120,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('create.template') }}" class="nav-link text-white">
+            <a href="{{ route('template.create') }}" class="nav-link text-white">
               <i class="fas fa-file-alt me-2"></i>
               <span class="nav-link-text">My Templates</span>
             </a>

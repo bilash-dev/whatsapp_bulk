@@ -12,11 +12,6 @@ class WhatsappController extends Controller
         return view('page.dashboard');
     }
 
-    public function createTemplate(){
-        return view('page.template');
-    }
-
-   
     public function campaign(){
         return view('page.campaign');
     }

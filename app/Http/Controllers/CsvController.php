@@ -26,10 +26,10 @@ class CsvController extends Controller
     
            
             $filename = 'phone_numbers_' . now()->format('Ymd_His') . '.' .$file->getClientOriginalExtension();
-            $filePath = $file->storeAs('public/', $filename);
+            $filePath = $file->storeAs('csvFile', $filename, 'public');
      
             // Parse CSV and insert phone numbers
-            $absolutePath = storage_path('app/' . $filePath);
+            $absolutePath = storage_path('app/public/' . $filePath);
             $data = array_map('str_getcsv', file($absolutePath));
            
             $inserted = false;
@@ -45,7 +45,7 @@ class CsvController extends Controller
             }
 
             if($inserted){
-                return redirect()->route('create.template')->with('success', 'CSV file & phone numbers inserted.');
+                return redirect()->route('template.create')->with('success', 'CSV file & phone numbers inserted.');
             }else{
                 return back()->with('error', 'CSV file is empty or contains invalid data.');
             }

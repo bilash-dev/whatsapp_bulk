@@ -13,7 +13,7 @@
                             @csrf
 
                             <div class="mb-3">
-                                <input type="text" name="phone_number" class="form-control" placeholder="Enter phone number" required>
+                                <input type="text" name="senderId" class="form-control" placeholder="Enter phone number" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary">

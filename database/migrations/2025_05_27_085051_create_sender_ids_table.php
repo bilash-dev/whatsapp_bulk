@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sender_ids', function (Blueprint $table) {
             $table->id();
-            $table->string('phone_number')->unique();
+            $table->string('senderId')->unique();
             $table->string('provider')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
