@@ -20,7 +20,12 @@ class CampaignController extends Controller
     }
 
     
-    public function campaingSend(){
-        //
+    public function campaingSend(Request $request){
+        $request->validate([
+            'sender_id' => 'required',
+            'template_id' => 'required',
+            'csv_path' => 'required',
+            'user_id' => 'required'
+        ]);
     }
 }

@@ -56,7 +56,7 @@
 
     <style>
         .container{
-            max-width: 600px;
+            max-width: 550px;
         }
     </style>
 @endsection

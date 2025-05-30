@@ -95,26 +95,27 @@ class AuthController extends Controller
     // }
 
 
+    //open whatsapp in browser
+    // public function openWhatsApp(Request $request)
+    // {
+    //     $user = auth()->user();
+    //     $browser = $user->browser_preference === 'firefox' ? 'firefox' : 'google-chrome';
+        
+    //     // Use shell_exec for more direct control
+    //     $command = sprintf(
+    //         '%s %s https://web.whatsapp.com > /dev/null 2>&1 &',
+    //         $browser,
+    //         $user->browser_preference === 'firefox' ? '-new-tab' : '--new-tab'
+    //     );
+        
+    //     shell_exec($command);
+        
+    //     return response()->json([
+    //         'success' => true,
+    //         'message' => 'WhatsApp opened in ' . $browser,
+    //         'command' => $command
+    //     ]);
+    // }
 
-    public function openWhatsApp(Request $request)
-    {
-        $user = auth()->user();
-        $browser = $user->browser_preference === 'firefox' ? 'firefox' : 'google-chrome';
-        
-        // Use shell_exec for more direct control
-        $command = sprintf(
-            '%s %s https://web.whatsapp.com > /dev/null 2>&1 &',
-            $browser,
-            $user->browser_preference === 'firefox' ? '-new-tab' : '--new-tab'
-        );
-        
-        shell_exec($command);
-        
-        return response()->json([
-            'success' => true,
-            'message' => 'WhatsApp opened in ' . $browser,
-            'command' => $command
-        ]);
-    }
-    
+
 }
