@@ -98,79 +98,114 @@ class SenderIdController extends Controller
         //     // Note: This is a simplistic approach. WhatsApp doesn't provide a public API for this check.
         //     // You might need to use a commercial WhatsApp API service for accurate verification.
         // }
-    
-        // private function openHeadlessWhatsApp($phoneNumber)
+
+
+        //server-side whatsapp open
+        // public function store(Request $request)
         // {
-        //     $cleanNumber = preg_replace('/[^0-9]/', '', $phoneNumber);
-        //     $url = escapeshellarg("https://web.whatsapp.com/send?phone={$cleanNumber}");
+        //     $validated = $request->validate([
+        //         'senderId' => 'required|unique:sender_ids,senderId',
+        //     ]);
+
+        //     try {
+        //         $senderId = SenderId::create([
+        //             'senderId' => $request->senderId,
+        //             'user_id' => auth()->id(),
+        //         ]);
+
+        //         $opened = $this->openWhatsAppInServerBrowser($request->senderId);
+                
+        //         return redirect()
+        //             ->route('upload.csv')
+        //             ->with('success', $opened 
+        //                 ? 'WhatsApp opened successfully!' 
+        //                 : 'Saved, but could not open WhatsApp');
+
+        //     } catch (\Exception $e) {
+        //         return back()
+        //             ->withInput()
+        //             ->with('error', 'Error: '.$e->getMessage());
+        //     }
+        // }
+        
+
+        //open whatsapp in single browser
+        // private function openWhatsAppInServerBrowser($senderId)
+        // {
+        //     // URL to open, optionally with a pre-filled message or contact (WhatsApp Web format)
+        //     $url = 'https://web.whatsapp.com';
+
+        //     // Use the preferred browser or default to Chrome
+        //     // $browser = 'google-chrome'; // or 'firefox'
+        //     $browser = '/usr/bin/google-chrome';
+
+        //     // Proper shell command to open a new browser tab in background
+        //     // $command = sprintf(
+        //     //     '%s --new-tab "%s" > /dev/null 2>&1 &',
+        //     //     $browser,
+        //     //     $url
+        //     // );
+        //     // Build shell command using GUI user (e.g., amidelu)
+        //     $command = sprintf(
+        //         'sudo -u amidelu DISPLAY=:0 %s --new-tab "%s" > /dev/null 2>&1 &',
+        //         $browser,
+        //         $url
+        //     );
             
-        //     $command = "xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x24' ".
-        //             "google-chrome --no-sandbox --disable-gpu {$url} > /dev/null 2>&1 &";
-            
+
+        //     // Optional: If you're running as a web server user, make sure DISPLAY is set
+        //     // for GUI apps like Chrome. Most often, it is :0
+        //     putenv("DISPLAY=:0");
+
+        //     // Execute the command
         //     shell_exec($command);
+
+        //     // Optional: return true/false based on command logic or logging
+        //     return true;
         // }
 
+        //Open whatsappp in multiple browser
+        // private function openWhatsAppInServerBrowser($senderId)
+        // {
+        //     $browsers = [
+        //         [
+        //             'name' => 'google-chrome',
+        //             'path' => '/usr/bin/google-chrome',
+        //             'flag' => '--new-tab',
+        //         ],
+        //         [
+        //             'name' => 'firefox',
+        //             'path' => '/usr/bin/firefox',
+        //             'flag' => '--new-tab',
+        //         ],
+        //     ];
 
-        public function store(Request $request)
-        {
-            $validated = $request->validate([
-                'senderId' => 'required|unique:sender_ids,senderId',
-            ]);
+        //     $url = 'https://web.whatsapp.com';
+        //     putenv("DISPLAY=:0");
 
-            try {
-                $senderId = SenderId::create([
-                    'senderId' => $request->senderId,
-                    'user_id' => auth()->id(),
-                ]);
+        //     foreach ($browsers as $browser) {
+        //         if (!file_exists($browser['path'])) {
+        //             continue;
+        //         }
+        
+        //         $command = sprintf(
+        //             'DISPLAY=:0 %s %s "%s" > /dev/null 2>&1 &',
+        //             $browser['path'],
+        //             $browser['flag'],
+        //             $url
+        //         );
+        
+        //         Log::info("Opening WhatsApp in: {$browser['name']} | Command: $command");
+        
+        //         shell_exec($command);
+        
+        //         return true; // Return after first successful browser execution
+        //     }
 
-                $opened = $this->openWhatsAppInServerBrowser($request->senderId);
-                
-                return redirect()
-                    ->route('upload.csv')
-                    ->with('success', $opened 
-                        ? 'WhatsApp opened successfully!' 
-                        : 'Saved, but could not open WhatsApp');
+        //     // All browsers already running WhatsApp
+        //     return false;
+        // }
 
-            } catch (\Exception $e) {
-                return back()
-                    ->withInput()
-                    ->with('error', 'Error: '.$e->getMessage());
-            }
-        }
-
-        private function openWhatsAppInServerBrowser($senderId)
-        {
-            // URL to open, optionally with a pre-filled message or contact (WhatsApp Web format)
-            $url = 'https://web.whatsapp.com';
-
-            // Use the preferred browser or default to Chrome
-            // $browser = 'google-chrome'; // or 'firefox'
-            $browser = '/usr/bin/google-chrome';
-
-            // Proper shell command to open a new browser tab in background
-            // $command = sprintf(
-            //     '%s --new-tab "%s" > /dev/null 2>&1 &',
-            //     $browser,
-            //     $url
-            // );
-            // Build shell command using GUI user (e.g., amidelu)
-            $command = sprintf(
-                'sudo -u amidelu DISPLAY=:0 %s --new-tab "%s" > /dev/null 2>&1 &',
-                $browser,
-                $url
-            );
-            
-
-            // Optional: If you're running as a web server user, make sure DISPLAY is set
-            // for GUI apps like Chrome. Most often, it is :0
-            putenv("DISPLAY=:0");
-
-            // Execute the command
-            shell_exec($command);
-
-            // Optional: return true/false based on command logic or logging
-            return true;
-        }
 
 
         
@@ -220,4 +255,48 @@ class SenderIdController extends Controller
         //     curl_close($ch);
         //     return $httpCode;
         // }
+
+
+        //client-side whatsapp open
+        // public function store(Request $request)
+        // {
+        //     $validated = $request->validate([
+        //         'senderId' => 'required|unique:sender_ids,senderId',
+        //     ]);
+
+        //     // Create record with authenticated user
+        //     $senderId = SenderId::create([
+        //         'senderId' => $request->senderId,
+        //         'user_id' => auth()->id(), // Uncomment this
+        //     ]);
+
+        //     return response()->json([
+        //         'success' => true,
+        //         'whatsapp_url' => 'https://web.whatsapp.com/send?phone='.urlencode($request->senderId),
+        //         'redirect_url' => route('upload.csv'),
+        //         'message' => 'Sender ID stored successfully'
+        //     ]);
+        // }
+
+        public function store(Request $request)
+        {
+            $validated = $request->validate([
+                'senderId' => 'required|unique:sender_ids,senderId',
+            ]);
+
+            // Create record with authenticated user
+            $senderId = SenderId::create([
+                'senderId' => $request->senderId,
+                'user_id' => auth()->id(),
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'whatsapp_url' => 'https://web.whatsapp.com/send?phone='.urlencode($request->senderId),
+                'redirect_url' => route('upload.csv'),
+                'message' => 'Sender ID stored successfully'
+            ]);
+        }
+
+   
 }

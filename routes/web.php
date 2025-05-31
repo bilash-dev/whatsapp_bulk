@@ -70,3 +70,8 @@ Route::middleware('auth')->group(function(){
 Route::get('/sidebar', function () {
     return view('layout.sidebar');
 });
+
+Route::get('/test-shell', function () {
+    $output = shell_exec('whoami');
+    return 'Shell runs as: ' . $output;
+});
